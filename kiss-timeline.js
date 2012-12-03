@@ -45,7 +45,9 @@
               @field
               */
             prepend : false,
-        },options); 
+        },options);
+
+        $div.empty(); 
 
         // sort the data
         data.sort(function(a,b) { return a.t-b.t });

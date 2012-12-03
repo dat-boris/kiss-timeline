@@ -31,10 +31,22 @@
                 $(function () {
                     $("#jsondata").text(JSON.stringify(data, null, "\t"));
                     $.timeline($("#timeline"), data, {minLengthInMS: 10000});
+
+                    $("#jsondata").change(function() {
+                        var data;
+                        try {
+                            data = JSON.parse($(this).val());
+                        } catch (e) {
+                            alert(e);
+                            throw e;
+                        }
+                        $.timeline($("#timeline"), data, {minLengthInMS: 10000});
+                    })
                  });
             </script> 
             <h2>Raw data (JSON)</h2>
-            <pre id="jsondata"></pre>
+            <p> e.g. try changing duration and text </p>
+            <textarea style="width:100%; height:400px" id="jsondata"></textarea>
     </body>
 </html>
 
