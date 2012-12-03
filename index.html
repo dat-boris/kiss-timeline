@@ -20,17 +20,18 @@
 
             <h1> Demo </h1>
 
-            <div id="timeline" style="width:80%"></div>
+            <div class="well" id="timeline" style="width:80%"></div>
             <script>
                 var data = [
                     // time in epoch
                     { t: 1353113626000, duration: 1000, html : "<p>Data 1</p>" },
                     { t: 1353113628570, duration: 2000, html : "<p>Click here</p>", click : function() { alert("Element 2 Handler!"); } },
                     { t: 1353113628570, duration: 4000, html : "<p>Overlap with above</p>" },
-                ];
+                    ];
+                var options = {minLengthInMS: 10000, prependtime:true};
                 $(function () {
                     $("#jsondata").text(JSON.stringify(data, null, "\t"));
-                    $.timeline($("#timeline"), data, {minLengthInMS: 10000});
+                    $.timeline($("#timeline"), data, options);
 
                     $("#jsondata").change(function() {
                         var data;
@@ -40,7 +41,7 @@
                             alert(e);
                             throw e;
                         }
-                        $.timeline($("#timeline"), data, {minLengthInMS: 10000});
+                        $.timeline($("#timeline"), data, options);
                     })
                  });
             </script> 

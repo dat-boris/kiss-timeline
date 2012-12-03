@@ -35,16 +35,12 @@
 
     $.timeline = function ($div, data, options) {
         options = $.extend({
-            /** 
-              Minimal length of text
-              @field
-              */
+            /** Minimal length of text */
             minLengthInMS : 0,
-            /** 
-              Prepend time unit bar
-              @field
-              */
+            /** Prepend header field */
             prepend : false,
+            /** Prepend time taken to text */
+            prependtime: false,
         },options);
 
         $div.empty(); 
@@ -58,7 +54,9 @@
         if (!minLengthInMS) {
             throw "No valid time length found!";
         }
-
+if (!options.prependtime) {
+    throw "XXX";
+}
         var roundTo2Sig = function (i) {
             var val = Math.round(i*100)/100;
             // for debugging bar graph
@@ -68,13 +66,14 @@
 
         var $events = $("<ul class='events'/>").appendTo($div);
         $.each(data, function (i, e) {
+            var timeTxt = '@'+roundTo2Sig((e.t-minTime)/1000)+'s';
             $("<li/>").css({
                 left: roundTo2Sig(100*(e.t-minTime)/minLengthInMS)+'%',
                 width : (e.duration ? roundTo2Sig(100*e.duration/minLengthInMS) : 5)+'%',
             })
             .addClass(e.class)
-            .attr({ title : '@'+roundTo2Sig((e.t-minTime)/1000)+'s' })
-            .html(e.html)
+            .attr({ title : timeTxt })
+            .html((options.prependtime ? timeTxt : '') + e.html)
             .click(e.click)
             .appendTo($events);
         });
