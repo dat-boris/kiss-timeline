@@ -3,11 +3,13 @@ kiss-timeline
 
 A very simple epoch based timeline - no hassel!
 
+From: http://mattbango.com/sources/pure-css-timeline.txt
+
 Demo: https://sketchytechky.github.com/kiss-timeline/
 
 ## Synopsis ##
 
-            <div id="timeline" style="width:80%"></div>
+            <div id="timeline"></div>
             <script>
                 $(function () {
                     var data = [
