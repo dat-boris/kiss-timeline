@@ -5,7 +5,7 @@ A very simple epoch based timeline - no hassel!
 
 From: http://mattbango.com/sources/pure-css-timeline.txt
 
-Demo: https://sketchytechky.github.com/kiss-timeline/
+Demo: http://sketchytechky.github.com/kiss-timeline/
 
 ## Synopsis ##
 
