@@ -35,7 +35,16 @@
 
     $.timeline = function ($div, data, options) {
         options = $.extend({
-            minLengthInMS : 0
+            /** 
+              Minimal length of text
+              @field
+              */
+            minLengthInMS : 0,
+            /** 
+              Prepend time unit bar
+              @field
+              */
+            prepend : false,
         },options); 
 
         // sort the data
@@ -59,8 +68,9 @@
         $.each(data, function (i, e) {
             $("<li/>").css({
                 left: roundTo2Sig(100*(e.t-minTime)/minLengthInMS)+'%',
-                width : roundTo2Sig(100*(e.duration || 3000)/minLengthInMS)+'%',
+                width : (e.duration ? roundTo2Sig(100*e.duration/minLengthInMS) : 5)+'%',
             })
+            .addClass(e.class)
             .attr({ title : '@'+roundTo2Sig((e.t-minTime)/1000)+'s' })
             .html(e.html)
             .click(e.click)
@@ -68,8 +78,14 @@
         });
         
         // TODO: determine timeframe
-        var $events = $("<ul class='intervals'/>").appendTo($div);
-        $events.text("Total duration: "+roundTo2Sig(minLengthInMS/1000)+" s ");
+        var $events = $("<div class='intervals'/>");
+        // security: roundTo2Sig already santize it for math int
+        $events.html("<h3>Total duration: "+roundTo2Sig(minLengthInMS/1000)+" s </h3>");
+        if (options.prepend) {
+            $events.prependTo($div);
+        } else {
+            $events.appendTo($div) 
+        }
         /*
         if (minLengthInMS <= 3*60*1000) { ... }
         */
