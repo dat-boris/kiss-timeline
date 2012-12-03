@@ -24,3 +24,7 @@ Demo: https://sketchytechky.github.com/kiss-timeline/
                  });
             </script> 
 
+## TODO ##
+
+* Time period axis to be done
+* Currently focus on micro level timeline (< 1 hour) which is my primary use case - lots of other timeline out there already deal with larger time scale. 
