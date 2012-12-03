@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <link href="kiss-timeline.css" rel="stylesheet">
+        <script src="kiss-timeline.js"> </script>
+    </head>
+    <body>
+        <a href="https://github.com/sketchytechky/kiss-timeline"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+        <div class="container">
+            <h1>A very very simple timeline</h1>
+
+            <p>
+            A timeline which soooo simpleeeee... no smartassness! 
+            </p>
+
+            <p>
+            From <a href="http://mattbango.com/notebook/web-development/pure-css-timeline/">Matt Bango</a>, awesome!
+            </p>
+
+            <h1> Demo </h1>
+
+            <div id="timeline" style="width:80%"></div>
+            <script>
+                var data = [
+                    // time in epoch
+                    { t: 1353113626000, duration: 1000, html : "<p>Data 1</p>" },
+                    { t: 1353113628570, duration: 2000, html : "<p>Click here</p>", click : function() { alert("Element 2 Handler!"); } },
+                    { t: 1353113628570, duration: 4000, html : "<p>Overlap with above</p>" },
+                ];
+                $(function () {
+                    $("#jsondata").text(JSON.stringify(data, null, "\t"));
+                    $.timeline($("#timeline"), data, {minLengthInMS: 10000});
+                 });
+            </script> 
+            <h2>Raw data (JSON)</h2>
+            <pre id="jsondata"></pre>
+    </body>
+</html>
+
