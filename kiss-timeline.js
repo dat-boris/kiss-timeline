@@ -34,7 +34,12 @@
     "use strict";
 
     $.timeline = function ($div, data, options) {
-        options = options || {}; 
+        options = $.extend({
+            minLengthInMS : 0
+        },options); 
+
+        // sort the data
+        data.sort(function(a,b) { return a.t-b.t });
         var minTime = Math.min.apply(null, data.map(function (v) { return v.t; }));
         var maxTime = Math.max.apply(null, data.map(function (v) { return v.t; }));
         var minLengthInMS = Math.max(options.minLengthInMS, (maxTime - minTime));
